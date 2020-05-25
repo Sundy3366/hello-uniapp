@@ -1,4 +1,8 @@
 {
-  "navigationStyle": "custom",
-  "usingComponents": {}
+  "navigationBarTitleText": "福鼎口福白茶",
+  "onReachBottomDistance": 60,
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "goods-list": "/pageb2c/list"
+  }
 }

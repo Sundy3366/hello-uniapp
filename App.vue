@@ -12,5 +12,6 @@
 	};
 </script>
 <style>
-	
+	@import "./common/iconfont.css";
+	@import "./common/dt-ui-uni.css";
 </style>

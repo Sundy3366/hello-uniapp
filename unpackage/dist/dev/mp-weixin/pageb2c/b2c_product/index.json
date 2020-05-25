@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "热门推荐",
+  "usingComponents": {
+    "goods-list": "/pageb2c/list"
+  }
+}

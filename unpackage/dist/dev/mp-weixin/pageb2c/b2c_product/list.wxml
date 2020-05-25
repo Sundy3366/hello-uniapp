@@ -1,0 +1,1 @@
+<view><block wx:if="{{catList}}"><view class="tabs-border"><block wx:for="{{catList}}" wx:for-item="item" wx:for-index="index"><view>{{''+item.title+''}}</view></block></view></block><block wx:if="{{$root.g0.length==0}}"><view class="emptyData">暂无产品上架</view></block><goods-list vue-id="baf0c63a-1" list="{{list}}" bind:__l="__l"></goods-list></view>
