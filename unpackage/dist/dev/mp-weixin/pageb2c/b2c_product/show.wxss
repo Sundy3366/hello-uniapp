@@ -1,0 +1,148 @@
+
+.video {
+	width: 100%;
+}
+.fav-active,
+.fav-active:before {
+	color: #e48681 !important;
+}
+.ppBox {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 10px;
+	background-color: #fff;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	z-index: 999;
+}
+.ppBox-close {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	padding: 10px;
+	cursor: pointer;
+}
+.h240 {
+	height: 500rpx;
+}
+.wh-80 {
+	width: 80px;
+	height: 80px;
+}
+.pdl0 {
+	padding-left: 0;
+}
+.ani-bottom {
+	-webkit-animation: aniBottom 500ms;
+	        animation: aniBottom 500ms;
+}
+@-webkit-keyframes aniBottom {
+from {
+		bottom: -100%;
+}
+to {
+		bottom: 0;
+}
+}
+.ani-top {
+	-webkit-animation: aniTop 500ms;
+	        animation: aniTop 500ms;
+}
+@-webkit-keyframes aniTop {
+from {
+		bottom: 0;
+}
+to {
+		bottom: -600px;
+}
+}
+.flcart {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	position: fixed;
+	left: 0rpx;
+	right: 0rpx;
+	bottom: 0rpx;
+	font-size: 14px;
+	line-height: 1.2;
+	border-top: 1rpx solid #eee;
+	background-color: #fff;
+	text-align: center;
+}
+.flcart-icon:before {
+	padding-top: 10rpx;
+	clear: both;
+	display: block;
+	font-size: 14px;
+	line-height: 1.2;
+}
+.flcart-f1,
+.flcart-f2 {
+	height: 100rpx;
+}
+.flcart-f1 {
+	width: 132rpx;
+	display: inline-block;
+
+	line-height: 1.2;
+	font-size: 14px;
+}
+.flcart-f2 {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	line-height: 100rpx;
+	background-color: #f90;
+	color: #fff;
+	font-size: 12px;
+}
+.pdList-item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	margin-bottom: 5px;
+}
+.pdList-img {
+	width: 30px;
+	height: 30px;
+	margin-right: 5px;
+	border-radius: 50%;
+}
+.pdList-nick {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+}
+.bt-a,
+.bt-b {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	padding: 5px;
+}
+.bt-a-f {
+	color: #fff;
+	font-size: 12px;
+	line-height: 1.5;
+}
+.bt-a {
+	background-color: #f4aba7;
+}
+.bt-b {
+	background-color: #e02e24;
+}
+
