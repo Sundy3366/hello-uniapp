@@ -7,7 +7,7 @@
 			"enablePullDownRefresh": true
 		}
 	}, {
-		"path": "pages/cart/cart",
+		"path": "pageb2c/b2c_cart/index",
 		"style": {
 			"navigationBarTitleText": "购物车",
 			"navigationBarTextStyle": "black",
@@ -39,7 +39,21 @@
 		"style": {
 			"navigationBarTitleText": "产品详情"
 		}
-	}],
+	}    ,{
+            "path" : "pageb2c/b2c_cart/index",
+            "style" : {
+				"navigationBarTitleText": "购物车"
+			}
+        }
+        ,{
+            "path" : "pages/login/index",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/register/index",
+            "style" : {}
+        }
+    ],
 	"tabBar": {
 		"color": "#919293",
 		"selectedColor": "#97AF13",
@@ -51,7 +65,7 @@
 			"iconPath": "static/images/tabBar/index.png",
 			"selectedIconPath": "static/images/tabBar/index_selected.png"
 		}, {
-			"pagePath": "pages/cart/cart",
+			"pagePath": "pageb2c/b2c_cart/index",
 			"text": "购物车",
 			"iconPath": "static/images/tabBar/drink.png",
 			"selectedIconPath": "static/images/tabBar/drink_selected.png"

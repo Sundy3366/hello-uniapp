@@ -28,8 +28,55 @@
 					<view class="flex-1 cl3 f12">人气: {{pageData.data.view_num}}</view>
 				</view>
 			</view>
-		
-			<view v-if="pageData.order" class=""></view>
+
+			<view class="flcart">
+				<view :class="favClass" class="flcart-f1 cl2 pointer">
+					<view :class="favClass" class="flcart-icon iconfont icon-likefill cl2"></view>
+					收藏
+				</view>
+				<navigator url="../b2c_cart/index" class="flcart-f1">
+					<view class="flcart-icon iconfont icon-cart"></view>
+					购物车
+				</navigator>
+				<view class="flex-1"></view>
+				<view class="flcart-f2" @click="ppBoxShow(false)">加入购物车</view>
+				<view @click="ppBoxShow(true)" class="flcart-f2 bg-f30">立即购买</view>
+			</view>
+
+			<view id="ppBox" :class="ppBoxClass" class="modal-group">
+				<view @click="ppBoxClass= ''" class="modal-mask"></view>
+				<view class="ppBox ani-bottom">
+					<view id="ppBox-close" @click="ppBoxClass=''" class="ppBox-close iconfont icon-close"></view>
+					<view class="flex flex-jc-center mgb-10">
+						<img class="wh-80 mgr-10" :src="pageData.data.imgurl+'.100x100.jpg'" />
+						<view class="flex-1 flex-jc-center">
+							<view class="cl-money mgb-5">￥{{price}}</view>
+							<view class="f12 cl2 mgb-5">库存{{pageData.data.total_num}}件</view>
+							<view v-if="pageData.data.isksid" class="f12">选择 {{pageData.data.ks_label_name}},{{pageData.data.ks_label_size}}</view>
+						</view>
+					</view>
+					<template v-if="pageData.data.isksid>0">
+						<view class="kslist-label mgb-5">{{pageData.data.ks_label_name}}</view>
+						<view id="ks1" class="kslist bd-mp-10 pdl0">
+							<block v-for="(item, i) in  ksList" :key="i">
+								<view :class="{'kslist-active':item.id==ksid1}" class="kslist-item">{{item.title}}</view>
+							</block>
+						</view>
+					</template>
+					<view class="flex flex-ai-center bd-mp-10">
+						<view class="f14">购买数量</view>
+						<view class="flex-1"></view>
+						<view class="numbox">
+							<view @click="dMinus" class="numbox-minus">-</view>
+							<input class="numbox-num" id="cart-amount" readonly="" :value="cart_amount||0" @input="onInput" />
+							<view @click="dPlus" class="numbox-plus">+</view>
+						</view>
+
+					</view>
+					<view class="btn-row-submit" @click="addCart" id="addCart">确定</view>
+				</view>
+
+			</view>
 		</view>
 	</view>
 </template>
@@ -38,7 +85,14 @@
 	export default {
 		data() {
 			return {
-				pageData: {}
+				pageData: {},
+				favClass: "",
+				ppBoxClass: "",
+				attBoxClass: "",
+				goBuy: false,
+				cart_amount: 1,
+				price: 0,
+				ksid: 0,
 			}
 		},
 		onLoad: function(ops) {
@@ -51,9 +105,63 @@
 			getPage: function(id) {
 				this.app.get({
 					url: this.app.apiHost + "/module.php?m=b2c_product&a=show&ajax=1&id=" + id,
-					data: {orderid: id},
+					data: {
+						orderid: id
+					},
 					success: res => {
 						this.pageData = res.data;
+					}
+				})
+			},
+			//加入购物车，立即购买
+			ppBoxShow: function(flag) {
+				this.goBuy = flag
+				this.ppBoxClass = 'flex-col'
+			},
+			//减少数量
+			dMinus: function() {
+				this.cart_amount > 1 && this.cart_amount--
+			},
+			//增加数量
+			dPlus: function() {
+				this.cart_amount++
+			},
+			//输入事件
+			onInput: function(e) {
+				console.log(e.detail)
+				this.cart_amount = e.detail.value
+			},
+			//加入购物车
+			addCart: function() {
+				let ksid = this.ksid;
+				uni.request({
+					url: this.app.apiHost + '/module.php?m=b2c_cart&a=add&ajax=1',
+					data: {
+						productid: this.pageData.data.id,
+						amount: this.cart_amount,
+						ksid: ksid,
+						authcode: this.app.getAuthCode()
+					},
+					method: 'GET',
+					dataType: "json",
+					success: response => {
+						let res = response.data;
+						console.log(res)
+						if(res.error){
+							uni.showToast({
+								title: res.message
+							})
+							return false
+						}
+						uni.showToast({
+							title: '加入成功'
+						})
+						// if(res.data.action === 'delete'){
+						// 	return false
+						// }
+						if(this.goBuy){
+							// 跳转支付页面
+						}
 					}
 				})
 			}
